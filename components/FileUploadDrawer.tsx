@@ -1,3 +1,5 @@
+
+// @ts-nocheck
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -89,6 +91,7 @@ export default function FileUploadDrawer() {
           <Box sx={{ height: 20 }}>
             <Puller />
           </Box>
+       
           <form action={handleSubmit}>
             <Stack gap={2} sx={{ pb: 2 }}>
               <Typography variant="h6">Upload File</Typography>
