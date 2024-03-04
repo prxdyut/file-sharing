@@ -1,12 +1,10 @@
+import { s3 } from "@global/utils/s3";
 import { S3 } from "aws-sdk";
 
-const s3 = new S3({
-  accessKeyId: "AKIA6ODU2MOGVPCEMUW7",
-  secretAccessKey: "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",
-  region: "ap-south-1",
-});
-
-export const upload = async ({ params }: { params: S3.PutObjectRequest }) => {
+export const upload = async (
+  params: S3.PutObjectRequest,
+  uploadProgressCallback: Function
+) => {
   try {
     const uploaded = s3.upload(
       params,
@@ -14,11 +12,13 @@ export const upload = async ({ params }: { params: S3.PutObjectRequest }) => {
         console.log("Upload data ", { data, err })
     );
     uploaded.on("httpUploadProgress", (data) => {
-      console.log("Upload Progress ", data);
+      uploadProgressCallback(data);
     });
     await uploaded.promise();
-    console.log(`${location.origin}/uploads/${params.Key}`)
+    uploadProgressCallback(false);
+    return { url: `${location.origin}/uploads/${params.Key}` };
   } catch (error) {
     console.log("Upload Error ", error);
+    return { error };
   }
 };

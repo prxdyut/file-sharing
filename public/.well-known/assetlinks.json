@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.vidhis_archive.twa",
+      "sha256_cert_fingerprints": [
+        "E4:BA:76:1B:61:AF:D1:85:F0:86:A3:27:95:01:45:92:7A:60:49:40:C5:45:A7:BC:FD:A9:E7:C7:E7:B7:B0:1E"
+      ]
+    }
+  }
+]
